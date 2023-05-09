@@ -1,12 +1,24 @@
+import { useLoaderData } from 'react-router-dom'
 import './App.css'
+import CoffeeCart from './components/CoffeeCart';
 
 function App() {
 
+  const coffees = useLoaderData();
+
   return (
-    <>
-      <h1 className='text-6xl text-purple-600'>Vite + React</h1>
-     
-    </>
+    <div className='m-20 '>
+      <h1 className='text-6xl my-20 text-center text-purple-600'>Hot Hot Coffee : {coffees.length}</h1>
+      <div className='grid md:grid-cols-2 gap-4'>
+        {
+          coffees.map(coffee => <CoffeeCart
+            key={coffee._id}
+            coffee={coffee}
+          ></CoffeeCart>)
+        }
+      </div>
+
+    </div>
   )
 }
 
